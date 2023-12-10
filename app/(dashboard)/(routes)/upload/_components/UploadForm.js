@@ -1,8 +1,10 @@
 "use client"
 import React, { useState } from 'react'
 import AlertMessage from './AlertMessage'
+import FilePreview from './FilePreview'
+import Progressbar from './Progressbar'
 
-const UploadForm = () => {
+const UploadForm = ({ uploadbutton, Progress }) => {
     const [isfile, setisfile] = useState(null)
     const [alert, setalert] = useState(false)
 
@@ -15,6 +17,10 @@ const UploadForm = () => {
             setisfile(file)
             setalert(false)
         }
+    }
+
+    const removefile = () => {
+        setisfile(null)
     }
 
     return (
@@ -33,9 +39,12 @@ const UploadForm = () => {
                         <input id="dropzone-file" type="file" className="hidden" onChange={(e) => onFileSelect(e.target.files[0])} />
                     </label>
                 </div>
+                <div>
+                    {isfile && <FilePreview file={isfile} removefile={removefile} />}
+                </div>
                 {alert && <AlertMessage msg={"max file size is 4mb"} />}
-                <button disabled={!isfile} className='p-3 bg-primary text-white w-[30%] rounded-full mt-5 disabled:bg-gray-400'>Upload</button>
-
+                {isfile && Progress >= 0 ? <Progressbar progress={Progress} /> : <button disabled={!isfile} className='p-3 bg-primary text-white w-[30%] rounded-full mt-5 disabled:bg-gray-400' onClick={() => uploadbutton(isfile)}>Upload</button>
+                }
             </div>
         </div>
     )
