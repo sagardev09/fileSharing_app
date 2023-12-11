@@ -3,7 +3,7 @@ import { File, Shield, Upload } from 'lucide-react'
 import Image from 'next/image'
 import React, { useState } from 'react'
 import logo from "@/public/logo.svg"
-import Link from "next/Link"
+import Link from 'next/link'
 
 const Sidebar = () => {
 
@@ -42,14 +42,13 @@ const Sidebar = () => {
                             menu.map((item, index) => {
                                 return (
                                     <Link href={item.path} key={item.id}>
-                                    <button  className={`flex items-center gap-2 hover:bg-gray-100 px-4 py-2  w-full rounded-lg ${activeIndex === index ? "bg-blue-50 text-primary" : null}`} onClick={() => setactiveIndex(index)}>
-                                        <item.icon />
-                                        
-                                        <h5 className="block text-base font-medium ">
-                                            {item.name}
-                                        </h5>
-                                    </button>
-                                        </Link>
+                                        <button className={`flex items-center gap-2 hover:bg-gray-100 px-4 py-2  w-full rounded-lg ${activeIndex === index ? "bg-blue-50 text-primary" : null}`} onClick={() => setactiveIndex(index)}>
+                                            <item.icon />
+                                            <h5 className="block text-base font-medium ">
+                                                {item.name}
+                                            </h5>
+                                        </button>
+                                    </Link>
                                 )
                             })
                         }

@@ -1,36 +1,15 @@
 "use client"
 import React, { useState, useEffect } from 'react'
-import { collection, getDocs, getFirestore } from "firebase/firestore";
-import { app } from '@/firebaseConfig'
+
 import Link from 'next/link';
+import { Check, X } from 'lucide-react';
 
 
-const FileDetails = () => {
-    const db = getFirestore(app);
-    const [FilesData, setFilesData] = useState([])
-
-    const fetchData = async () => {
-        try {
-            const querySnapshot = await getDocs(collection(db, "uploadedfiles"));
-
-            const filesArray = [];
-
-            querySnapshot.forEach((doc) => {
-                filesArray.push(doc.data());
-            });
-            setFilesData(filesArray);
-            console.log("Data loaded successfully");
-        } catch (error) {
-            console.error("Error loading data:", error);
-        }
-    };
+const FileDetails = ({ FilesData, fetchData }) => {
 
     useEffect(() => {
         fetchData();
     }, []);
-
-
-
 
 
     return (
@@ -53,10 +32,10 @@ const FileDetails = () => {
                         <div className=' w-[10%]'>
                             <h5>{(item.fileSize / 1024 / 1024).toFixed(2)}MB</h5>
                         </div>
-                        <div className=' w-[10%] '>
-                            <h5>{item?.password}</h5>
+                        <div className=' w-[10%] flex items-center justify-center '>
+                            <h5>{item?.password.length > 3 ? <Check className='text-green-500' /> : <X className='text-red-500' />}</h5>
                         </div>
-                        <div className=' w-[10%]'>
+                        <div className=' w-[10%] text-center'>
                             <Link href={item?.shortUrl}>
                                 <h5>download</h5>
                             </Link>

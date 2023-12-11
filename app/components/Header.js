@@ -1,5 +1,5 @@
 import React from 'react'
-import Image from "next/Image"
+import Image from 'next/image'
 import logo from "@/public/logo.svg"
 
 const Header = () => {
@@ -11,7 +11,7 @@ const Header = () => {
                         <div className="flex-1 md:flex md:items-center md:gap-12">
                             <a className="block text-teal-600" href="/">
                                 <span className="sr-only">Home</span>
-                                <Image src={logo} alt="logo"/>
+                                <Image src={logo} alt="logo" />
                             </a>
                         </div>
 
