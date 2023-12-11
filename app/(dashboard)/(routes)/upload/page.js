@@ -49,7 +49,7 @@ const Upload = () => {
                 setshowModal(false)
                 router.push("/file-preview/" + fileDocId);
             }, 2000);
-    }, [showModal === true, fileDocId,])
+    }, [showModal === true, fileDocId])
 
 
 
@@ -68,9 +68,10 @@ const Upload = () => {
                 userName: user?.fullName,
                 password: "",
                 id: docId,
-                shortUrl: process.env.NEXT_PUBLIC_BASE_URL + docId
+                shortUrl: process.env.NEXT_PUBLIC_BASE_URL + "f/" + docId
             })
             setfileDocId(docId)
+            console.log(shortUrl);
 
 
         } catch (error) {
