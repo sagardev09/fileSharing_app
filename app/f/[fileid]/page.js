@@ -3,6 +3,9 @@ import { app } from "@/firebaseConfig"
 import React, { useEffect, useState } from 'react'
 import { doc, getDoc, getFirestore } from "firebase/firestore";
 import FileItem from "./_components/FileItem";
+import Link from "next/link";
+import Image from "next/image";
+import logo from "@/public/logo.svg"
 
 const DownloadPage = ({ params }) => {
 
@@ -27,7 +30,10 @@ const DownloadPage = ({ params }) => {
 
 
     return (
-        <div className="bg-gray-100 h-screen w-screen flex items-center justify-center gap-4">
+        <div className="bg-gray-100 h-screen w-screen flex items-center justify-center gap-4 flex-col">
+            <Link href={"/"}>
+                <Image src={logo} alt="logo" />
+            </Link>
             <FileItem file={FileData} />
         </div>
     )
